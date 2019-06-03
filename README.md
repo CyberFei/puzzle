@@ -2,7 +2,7 @@
 
 演示地址
 
-![](https://raw.githubusercontent.com/CyberFei/pic/master/logo_400x400.png)
+<div align=center>![Puzzle Logo](https://raw.githubusercontent.com/CyberFei/pic/master/logo_400x400.png)
 
 ## 什么是 Puzzle
 
