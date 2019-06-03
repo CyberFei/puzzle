@@ -1,7 +1,5 @@
 <template>
-  <div class="common-page">
-    {{ moment().format("MMMM Do YYYY, h:mm:ss a") }}
-  </div>
+  <div class="page">{{ moment().format("MMMM Do YYYY, h:mm:ss a") }}</div>
 </template>
 
 <script>

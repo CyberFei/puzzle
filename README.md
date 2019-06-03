@@ -76,6 +76,51 @@ npm run build
 
 ### 热插拔相关
 
+前端项目根据后端菜单请求进行模块加载，如本项目中后端请求返回格式为（数据来自阿里云）：
+
+```javascript
+[
+  {
+    id: "elastic",
+    name: "弹性计算",
+    leaf: false,
+    children: [
+      {
+        id: "ecs",
+        name: "云服务器 ECS",
+        leaf: true,
+        page: "/ecs",
+        puzzle: "elastic"
+      },
+      // ...
+    ],
+    icon: "aperture",
+    puzzle: "elastic"
+  },
+  {
+    id: "database",
+    name: "数据库",
+    leaf: false,
+    children: [
+    	// ...
+    ],
+    icon: "aperture",
+    puzzle: "database"
+  },
+  // ...
+]
+```
+
+规定以第一级目录为模块目录（这里看自己的需求可以对项目进行修改）
+
+固模块 ID 为 elastic、database 等，系统会在生产环境对所有子系统的入口文件进行请求，尝试加载模块，并生成路由；
+
+所以通过不同用户的不同**业务模块**返回结果，可以进行不同模块的加载，从而进行权限控制；
+
+同理通过不同用户的不同**基座模块**返回结果，可以进行不同基座的加载，从而进行灰度测试等操作；
+
+
+
 通过下列操作打包出的模块，可以直接新增到生产环境或者替换生产环境对应应模块
 
 #### 单独打包架构

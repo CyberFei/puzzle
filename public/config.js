@@ -6,5 +6,6 @@ window.PUZZLE_CONFIG = {
   api: {
     frame: "/api"
   },
-  frame: "dashboard"
+  // 使用基座名称
+  frame: "demo"
 };
