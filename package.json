@@ -1,0 +1,45 @@
+{
+  "name": "puzzle_demo",
+  "version": "0.1.0",
+  "description": "A vue project",
+  "author": "GengFei <im.gf@live.com>",
+  "scripts": {
+    "start": "webpack-dev-server --config config/webpack.dev.js",
+    "build": "node config/webpack.prod.js",
+    "dll": "webpack --config config/webpack.build.dll.js --mode production",
+    "core": "webpack --hide-modules --config config/webpack.build.core.js",
+    "frame": "webpack --hide-modules --config config/webpack.build.frame.js",
+    "puzzle": "webpack --hide-modules --config config/webpack.build.puzzle.js"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.4.5",
+    "axios": "^0.18.0",
+    "loadjs": "^3.6.1",
+    "minireset.css": "0.0.5",
+    "moment": "^2.24.0",
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.6",
+    "vuex": "^3.1.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^2.0.2",
+    "copy-webpack-plugin": "^5.0.3",
+    "css-loader": "^2.1.1",
+    "file-loader": "^3.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "inquirer": "^6.3.1",
+    "less": "^3.9.0",
+    "less-loader": "^5.0.0",
+    "vue-loader": "^15.7.0",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.32.0",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.4.1",
+    "webpack-merge": "^4.2.1"
+  }
+}
