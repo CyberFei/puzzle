@@ -2,7 +2,7 @@
 
 演示地址
 
-![](C:\Users\耿飞\Downloads\logo_400x400.png)
+![](https://raw.githubusercontent.com/CyberFei/pic/master/logo_400x400.png)
 
 ## 什么是 Puzzle
 
