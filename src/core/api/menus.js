@@ -17,6 +17,13 @@ export default [
         leaf: true,
         page: "/test2",
         puzzle: "test"
+      },
+      {
+        id: "puzzlesDetail",
+        name: "模块加载详情",
+        leaf: true,
+        page: "/puzzlesDetail",
+        puzzle: "test"
       }
     ],
     icon: "puzzle",
