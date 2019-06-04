@@ -1,5 +1,7 @@
 # 基于 Webpack4 的可插拔式微前端架构 - Puzzle
 
+演示环境：[PuzzleDemo](https://shuva.cn/demo/puzzle/#/home)
+
 ![Puzzle Logo](https://raw.githubusercontent.com/CyberFei/pic/master/logo_400x400.png)
 
 
