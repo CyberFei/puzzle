@@ -2,20 +2,17 @@
   <div class="index full">
     <div id="topbar" class="full fb">
       <div id="topbarLogo">
-        <img id="topbarLogoImg" src="../../assets/logo.png" alt="" />
+        <img id="topbarLogoImg" src="../../assets/logo.png" alt>
       </div>
       <div id="topbarLogoName">{{ appName }}</div>
       <div id="topbarCon" class="fb1"></div>
-      <partBtns id="topbarBtns" />
+      <partBtns id="topbarBtns"/>
     </div>
-
-    <partMenu id="menu" class="full"></partMenu>
-
-    <partTabs id="tabs" class="full"></partTabs>
-
+    <part-menu id="menu" class="full" :menus="menus" :nowTab="nowTab"/>
+    <part-tabs id="part-tabs"/>
     <div id="con" class="full">
       <keep-alive :include="includedComponents">
-        <router-view />
+        <router-view/>
       </keep-alive>
     </div>
   </div>
@@ -23,7 +20,7 @@
 
 <script>
 import partMenu from "./parts/Menu/";
-// import partTabs from "./parts/Tabs";
+import partTabs from "./parts/Tabs";
 import partBtns from "./parts/Btns";
 import { mapGetters } from "vuex";
 
@@ -31,24 +28,17 @@ export default {
   name: "Index",
   components: {
     partMenu,
-    // partTabs,
+    partTabs,
     partBtns
   },
   computed: {
-    ...mapGetters(["menus", "nowTab", "tabs"]),
+    ...mapGetters(["tabs", "nowTab", "menus"]),
     includedComponents: function() {
       // 首页默认缓存
-      var comps = ["Home"];
+      var comps = [PUZZLE_CONFIG.pageHome ? PUZZLE_CONFIG.pageHome : "Home"];
       // 根据路由地址处理其他tab
-      // for (var i in this.tabs) {
-      //   var paths = this.tabs[i].fullPath.split("/");
-      //   var name = "";
-      //   for (var i = 1; i < paths.length; i++) {
-      //     name +=
-      //       paths[i][0].toUpperCase() + paths[i].substr(1, paths[i].length - 1);
-      //   }
-      //   comps.push(name);
-      // }
+      for (var i in this.tabs) comps.push(this.tabs[i].id);
+      // console.log(comps);
       return comps;
     }
   },
@@ -80,7 +70,7 @@ export default {
   &Logo {
     @aniTime: 0.3s;
     display: inline-block;
-    width: @menuBarW;
+    width: @topBarH;
     height: @topBarH;
     padding: 10px;
 
@@ -120,13 +110,9 @@ export default {
   background: #fff;
   box-shadow: 2px 0px 5px 0px rgba(0, 0, 0, 0.05);
   transition: width 0.3s;
-
-  &:hover {
-    width: @menuBarWidth;
-  }
 }
 
-#tabs {
+#part-tabs {
   top: @topBarH;
   left: @menuBarW;
   height: @TabsH;

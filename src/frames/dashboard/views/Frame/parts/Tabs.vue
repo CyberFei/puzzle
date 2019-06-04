@@ -1,36 +1,35 @@
 <template>
-  <div>
-    <ul class="tabs-panel">
-      <li class="tab" :class="!nowTab.fullPath ? 'now' : ''" @click="home()">
-        <i class="iconfont icon-home" style="margin-right:2px"></i>首页
-      </li>
-      <li
-        class="tab"
+  <div class="full">
+    <div class="tabs-panel">
+      <span
+        :class="!nowTab.id ? 'now' : ''"
+        @click="home()"
+        style="border-left:1px solid #eee;padding-right:10px;"
+      >
+        <i class="iconfont icon-home"></i>首页
+      </span>
+      <span
         v-for="(tab, i) in tabs"
-        :key="tab.fullPath"
-        :class="nowTab.fullPath == tab.fullPath ? 'now' : ''"
+        :key="tab.id"
+        :class="nowTab.id == tab.id ? 'now' : ''"
         @click.self="changeTab(tab)"
-        @click.right="
-          rightMenu($event, tab, i, nowTab.fullPath == tab.fullPath)
-        "
+        @click.right="rightMenu($event, tab, i, nowTab.id == tab.id)"
         @contextmenu.prevent
-        @click.middle="closeTab(tab, i, nowTab.fullPath == tab.fullPath)"
+        @click.middle="closeTab(tab, i, nowTab.id == tab.id)"
       >
         {{ tab.name }}
         <i
           class="iconfont icon-x tab-close"
-          @click="closeTab(tab, i, nowTab.fullPath == tab.fullPath)"
+          @click="closeTab(tab, i, nowTab.id == tab.id)"
         ></i>
-      </li>
-    </ul>
-
+      </span>&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
     <div class="bg-left">
       <i class="iconfont icon-chevron-left"></i>
     </div>
     <div class="bg-right">
       <i class="iconfont icon-chevron-right"></i>
     </div>
-
     <div class="right-menu" v-show="openRight">
       <div
         class="right-menu-item"
@@ -38,9 +37,7 @@
           closeTab(rightItem.tab, rightItem.index, rightItem.isNow);
           openRight = false;
         "
-      >
-        关闭标签
-      </div>
+      >关闭标签</div>
       <div class="right-menu-item" @click.stop="closeOthers()">关闭其他</div>
       <div class="right-menu-item" @click.stop="closeAll()">关闭所有</div>
     </div>
@@ -50,6 +47,9 @@
 import { mapGetters } from "vuex";
 
 export default {
+  props: {
+    // tabs: Array
+  },
   data() {
     return {
       oldTabsLength: 0,
@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     changeTab(tab) {
-      this.$router.replace(tab.fullPath);
+      this.$router.replace({ name: tab.id });
       this.$store.commit("SET_NOWTAB", tab);
     },
     closeTab(tab, index, isNow) {
@@ -85,7 +85,7 @@ export default {
     home() {
       this.$store.commit("CLEAR_NOWTAB");
       // 跳转主页
-      this.$router.push({ path: "/" });
+      this.$router.replace({ path: "/" });
     },
     // 打开右键菜单
     rightMenu(e, tab, index, isNow) {
@@ -143,26 +143,25 @@ export default {
 <style lang="less">
 @import "~@frames/dashboard/style/var";
 
-#tabs {
-  @lrSize: 20px;
-
+#part-tabs {
+  height: @TabsH;
   // 超出遮罩
   .bg-left,
   .bg-right {
     position: absolute;
     top: 0;
+    right: 0;
     height: @TabsH;
-    width: @lrSize;
-
+    width: 20px;
     transition: all 0.2s;
-
+    z-index: 3;
     i {
+      // font-weight: bold;
       display: inline-block;
+      line-height: @TabsH + 1;
       width: 100%;
-
-      line-height: @TabsH;
       text-align: center;
-      color: #aaa;
+      color: #888;
     }
   }
   .bg-left {
@@ -181,62 +180,51 @@ export default {
     );
     right: 0;
   }
-
   // 标签栏
   .tabs-panel {
     position: absolute;
-    top: 0;
-    left: @lrSize;
-    right: @lrSize;
-    height: @TabsH;
-
-    overflow: hidden;
     white-space: nowrap;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0 20px;
+    // background: #f7f7f7;
+    font-size: 0;
   }
-
   // 标签
-  .tab {
+  span {
     display: inline-block;
     height: @TabsH;
     line-height: @TabsH;
+    border: 0;
+    border-right: 1px solid #eee;
     cursor: pointer;
-    padding: 0 10px;
+    padding: 0 6px 0 10px;
     font-size: 13px;
     transition: all 0.2s;
     color: #888;
-    border-right: 1px solid #eee;
-
-    &:first-child {
-      border-left: 1px solid #eee;
+    font-weight: bold;
+    .iconfont {
+      font-size: 14px;
     }
-
     &:hover {
-      background: @hover;
+      background: rgba(255, 255, 255, 0.6);
     }
-
     &.now {
-      background: @hover;
-
       color: @primary;
       font-weight: bold;
     }
-
-    .iconfont {
-      display: inline-block;
-
-      font-size: 13px;
-      line-height: @TabsH;
-    }
-
     .tab-close {
+      display: inline-block;
       width: 0;
-      margin-left: 0;
-
       overflow: hidden;
       font-weight: bold;
-      opacity: 0;
       transition: all 0.2s;
-
+      margin-left: 0;
+      opacity: 0;
+      vertical-align: middle;
+      color: #444;
       &:hover {
         color: #d9534f;
       }
@@ -252,15 +240,15 @@ export default {
   // 右键菜单
   .right-menu {
     position: fixed;
-    padding: 7px 0;
+    background: #ffffff;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
     z-index: 100;
     border-radius: 4px;
-
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
-    background: #ffffff;
-
+    padding: 6px 0;
     &-item {
-      padding: 7px 16px;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 6px 16px;
       cursor: pointer;
       transition: all 0.2s;
       &:hover {

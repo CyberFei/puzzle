@@ -1,5 +1,28 @@
 export default [
   {
+    id: "test",
+    name: "PUZZLE 测试页面",
+    leaf: false,
+    children: [
+      {
+        id: "test1",
+        name: "测试页面 KeepAlive",
+        leaf: true,
+        page: "/test1",
+        puzzle: "test"
+      },
+      {
+        id: "test2",
+        name: "测试长页面记录滚动条位置",
+        leaf: true,
+        page: "/test2",
+        puzzle: "test"
+      }
+    ],
+    icon: "puzzle",
+    puzzle: "test"
+  },
+  {
     id: "elastic",
     name: "弹性计算",
     leaf: false,
@@ -96,7 +119,7 @@ export default [
         puzzle: "elastic"
       }
     ],
-    icon: "aperture",
+    icon: "cpu",
     puzzle: "elastic"
   },
   {
@@ -224,7 +247,7 @@ export default [
         puzzle: "database"
       }
     ],
-    icon: "aperture",
+    icon: "database",
     puzzle: "database"
   },
   {
@@ -345,7 +368,7 @@ export default [
         puzzle: "cdn"
       }
     ],
-    icon: "aperture",
+    icon: "download-cloud",
     puzzle: "cdn"
   },
   {
@@ -431,7 +454,7 @@ export default [
         puzzle: "network"
       }
     ],
-    icon: "aperture",
+    icon: "globe",
     puzzle: "network"
   },
   {
@@ -475,7 +498,7 @@ export default [
         puzzle: "analysis"
       }
     ],
-    icon: "aperture",
+    icon: "pie-chart",
     puzzle: "analysis"
   },
   {
@@ -533,7 +556,7 @@ export default [
         puzzle: "yuntongxin"
       }
     ],
-    icon: "aperture",
+    icon: "mail",
     puzzle: "yuntongxin"
   },
   {
@@ -740,7 +763,7 @@ export default [
         puzzle: "apps"
       }
     ],
-    icon: "aperture",
+    icon: "grid",
     puzzle: "apps"
   },
   {
@@ -798,7 +821,7 @@ export default [
         puzzle: "hlwzjj"
       }
     ],
-    icon: "aperture",
+    icon: "layers",
     puzzle: "hlwzjj"
   },
   {
@@ -842,7 +865,7 @@ export default [
         puzzle: "mq"
       }
     ],
-    icon: "aperture",
+    icon: "message-square",
     puzzle: "mq"
   },
   {
@@ -893,59 +916,8 @@ export default [
         puzzle: "yidongyun"
       }
     ],
-    icon: "aperture",
+    icon: "smartphone",
     puzzle: "yidongyun"
-  },
-  {
-    id: "video",
-    name: "视频服务",
-    leaf: false,
-    children: [
-      {
-        id: "mts",
-        name: "媒体处理",
-        leaf: true,
-        page: "/mts",
-        puzzle: "video"
-      },
-      {
-        id: "vod",
-        name: "视频点播",
-        leaf: true,
-        page: "/vod",
-        puzzle: "video"
-      },
-      {
-        id: "live",
-        name: "视频直播",
-        leaf: true,
-        page: "/live",
-        puzzle: "video"
-      },
-      {
-        id: "rtc",
-        name: "音视频通信 RTC",
-        leaf: true,
-        page: "/rtc",
-        puzzle: "video"
-      },
-      {
-        id: "ivision",
-        name: "智能视觉（模型训练预测）",
-        leaf: true,
-        page: "/ivision",
-        puzzle: "video"
-      },
-      {
-        id: "vs",
-        name: "视频监控",
-        leaf: true,
-        page: "/vs",
-        puzzle: "video"
-      }
-    ],
-    icon: "aperture",
-    puzzle: "video"
   },
   {
     id: "dtplus",
@@ -1093,7 +1065,7 @@ export default [
         puzzle: "dtplus"
       }
     ],
-    icon: "aperture",
+    icon: "codesandbox",
     puzzle: "dtplus"
   },
   {
@@ -1249,7 +1221,7 @@ export default [
         puzzle: "yundun"
       }
     ],
-    icon: "aperture",
+    icon: "shield",
     puzzle: "yundun"
   },
   {
@@ -1307,39 +1279,99 @@ export default [
         puzzle: "netcn"
       }
     ],
-    icon: "aperture",
+    icon: "server",
     puzzle: "netcn"
   },
   {
-    id: "market",
-    name: "云市场",
+    id: "others",
+    name: "其他服务",
     leaf: false,
+    icon: "box",
+    puzzle: "others",
     children: [
+      {
+        id: "video",
+        name: "视频服务",
+        leaf: false,
+        children: [
+          {
+            id: "mts",
+            name: "媒体处理",
+            leaf: true,
+            page: "/mts",
+            puzzle: "others"
+          },
+          {
+            id: "vod",
+            name: "视频点播",
+            leaf: true,
+            page: "/vod",
+            puzzle: "others"
+          },
+          {
+            id: "live",
+            name: "视频直播",
+            leaf: true,
+            page: "/live",
+            puzzle: "others"
+          },
+          {
+            id: "rtc",
+            name: "音视频通信 RTC",
+            leaf: true,
+            page: "/rtc",
+            puzzle: "others"
+          },
+          {
+            id: "ivision",
+            name: "智能视觉（模型训练预测）",
+            leaf: true,
+            page: "/ivision",
+            puzzle: "others"
+          },
+          {
+            id: "vs",
+            name: "视频监控",
+            leaf: true,
+            page: "/vs",
+            puzzle: "others"
+          }
+        ],
+        icon: "film",
+        puzzle: "others"
+      },
       {
         id: "market",
         name: "云市场",
-        leaf: true,
-        page: "/market",
-        puzzle: "market"
-      }
-    ],
-    icon: "aperture",
-    puzzle: "market"
-  },
-  {
-    id: "spc",
-    name: "支持与服务",
-    leaf: false,
-    children: [
+        leaf: false,
+        children: [
+          {
+            id: "market",
+            name: "云市场",
+            leaf: true,
+            page: "/market",
+            puzzle: "others"
+          }
+        ],
+        icon: "cloud",
+        puzzle: "others"
+      },
       {
         id: "spc",
         name: "支持与服务",
-        leaf: true,
-        page: "/spc",
-        puzzle: "spc"
+        leaf: false,
+        children: [
+          {
+            id: "spc",
+            name: "支持与服务",
+            leaf: true,
+            page: "/spc",
+            puzzle: "others"
+          }
+        ],
+        icon: "help-circle",
+        puzzle: "others"
       }
-    ],
-    icon: "aperture",
-    puzzle: "spc"
+    ]
   }
 ];
