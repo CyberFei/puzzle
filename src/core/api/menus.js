@@ -24,6 +24,13 @@ export default [
         leaf: true,
         page: "/puzzlesDetail",
         puzzle: "test"
+      },
+      {
+        id: "changeFrame",
+        name: "切换基座（灰度测试）",
+        leaf: true,
+        page: "/changeFrame",
+        puzzle: "test"
       }
     ],
     icon: "puzzle",
