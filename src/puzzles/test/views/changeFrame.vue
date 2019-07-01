@@ -9,7 +9,10 @@ export default {
   name: "changeFrame",
   methods: {
     changeFrame() {
-      if (localStorage.getItem("frame") == "dashboard")
+      if (
+        !localStorage.getItem("frame") ||
+        localStorage.getItem("frame") == "dashboard"
+      )
         localStorage.setItem("frame", "demo");
       else localStorage.setItem("frame", "dashboard");
       location.reload();
