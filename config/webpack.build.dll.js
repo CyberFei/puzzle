@@ -1,6 +1,9 @@
 const webpack = require("webpack");
 const path = require("path");
 
+// 构建前清理
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+
 module.exports = {
   entry: {
     // 基本依赖
@@ -17,14 +20,15 @@ module.exports = {
     puzzle: ["moment"]
   },
   output: {
-    filename: "[name].bundle.js",
+    filename: "[name].[chunkhash].dll.js",
     path: path.join(__dirname, "../static/dll"),
-    library: "[name]_library"
+    library: "[name]_[chunkhash]"
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new webpack.DllPlugin({
       path: path.join(__dirname, "../static/dll", "[name].manifest.json"),
-      name: "[name]_library"
+      name: "[name]_[chunkhash]"
     })
   ]
 };

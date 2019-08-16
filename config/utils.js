@@ -82,3 +82,16 @@ exports.generateModulesMap = function() {
     function() {}
   );
 };
+
+// 获取 dll
+exports.getDlls = function() {
+  let dlls = ["core", "puzzle"];
+  let dllNames = [];
+  for (let item of dlls) {
+    const dllName = require(`../static/dll/${item}.manifest.json`).name.split(
+      "_"
+    );
+    dllNames.push(`./static/dll/${dllName[0]}.${dllName[1]}.dll.js`);
+  }
+  return dllNames;
+};

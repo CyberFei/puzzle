@@ -15,9 +15,12 @@
       </strong>
     </noscript>
     <div id="app"></div>
+    <!-- configs -->
     <script src="./config.js"></script>
-    <script src="./static/dll/core.bundle.js"></script>
-    <script src="./static/dll/puzzle.bundle.js"></script>
+    <!-- dlls -->
+    <% for (let i of htmlWebpackPlugin.options.dlls) { %>
+    <script src="<%= i %>"></script>
+    <% } %>
     <!-- built files will be auto injected -->
   </body>
 </html>

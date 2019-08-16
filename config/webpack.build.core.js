@@ -8,7 +8,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 // 路径获取
-const resolve = require("./utils").resolve;
+const { resolve, getDlls } = require("./utils");
 
 const webpackConfig = {
   mode: "production",
@@ -27,7 +27,8 @@ const webpackConfig = {
     // HTML 模板
     new HtmlWebpackPlugin({
       template: "public/index.html",
-      filename: "../index.html"
+      filename: "../index.html",
+      dlls: getDlls()
     }),
     // 纯静态资源复制
     new CopyWebpackPlugin([

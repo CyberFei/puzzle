@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 // 路径获取
-const resolve = require("./utils").resolve;
+const { resolve, getDlls } = require("./utils");
 
 module.exports = merge(common, {
   mode: "development",
@@ -29,7 +29,7 @@ module.exports = merge(common, {
     // 代理
     proxy: {
       "/api": "http://localhost:8888"
-    },
+    }
     // history 模式
     // historyApiFallback: {
     //   index: "src/index.html"
@@ -38,7 +38,8 @@ module.exports = merge(common, {
   plugins: [
     // HTML 模板
     new HtmlWebpackPlugin({
-      template: "public/index.html"
+      template: "public/index.html",
+      dlls: getDlls()
     }),
     // 静态资源复制
     new CopyWebpackPlugin([
