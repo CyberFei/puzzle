@@ -29,7 +29,11 @@ module.exports = merge(common, {
     // 代理
     proxy: {
       "/api": "http://localhost:8888"
-    }
+    },
+    // history 模式
+    // historyApiFallback: {
+    //   index: "src/index.html"
+    // }
   },
   plugins: [
     // HTML 模板

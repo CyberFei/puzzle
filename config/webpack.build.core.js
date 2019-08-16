@@ -18,7 +18,7 @@ const webpackConfig = {
   output: {
     path: resolve("dist/core"),
     publicPath: "./core/",
-    filename: "[name].js",
+    filename: "[name].[contenthash].js",
     libraryTarget: "var"
   },
   // devtool: "source-map",

@@ -5,8 +5,8 @@ const webpack = require("webpack");
 
 exports.resolve = dir => path.join(__dirname, "..", dir);
 
-// 获取文件目录
-exports.getAllDirs = function(mypath = ".") {
+// 获取文件夹目录
+const getAllDirs = function(mypath = ".") {
   const items = fs.readdirSync(mypath);
   let result = [];
   // 遍历当前目录中所有的文件和文件夹
@@ -22,10 +22,23 @@ exports.getAllDirs = function(mypath = ".") {
   });
   return result;
 };
+exports.getAllDirs = getAllDirs;
+
+// 获取文件目录
+const getAllFiles = function(mypath = ".") {
+  const items = fs.readdirSync(mypath);
+  let result = [];
+  items.map(item => {
+    let temp = path.join(mypath, item);
+    if (fs.statSync(temp).isFile()) result.push(item);
+  });
+  return result;
+};
+exports.getAllFiles = getAllFiles;
 
 // 将 Webpack 打包封装成 Promise
-exports.webpackPromise = function(config) {
-  return new Promise((resolve, reject) => {
+exports.webpackPromise = config =>
+  new Promise((resolve, reject) => {
     webpack(config, function(err, stats) {
       if (err) throw err;
       process.stdout.write(
@@ -37,4 +50,35 @@ exports.webpackPromise = function(config) {
       resolve();
     });
   });
+
+// 生成模块 map
+exports.generateModulesMap = function() {
+  let modulesMap = {};
+  function getModules(type) {
+    const modules = getAllDirs(`./dist/${type}`);
+    for (let item of modules) {
+      let files = getAllFiles(`./dist/${type}/${item}`);
+      for (let file of files) {
+        if (file.indexOf(item) > -1) {
+          modulesMap[item] = file.split(".")[1];
+        }
+      }
+    }
+  }
+  getModules("frames");
+  getModules("puzzles");
+
+  let modulesMapString = "";
+  for (let key in modulesMap)
+    modulesMapString += `${key}:"${modulesMap[key]}",`;
+
+  fs.writeFile(
+    "./dist/map.js",
+    `
+    var modulesMap={
+      ${modulesMapString}
+    }
+  `,
+    function() {}
+  );
 };

@@ -1,10 +1,11 @@
 <template>
-  <router-view class="view"/>
+  <router-view class="view" />
 </template>
 
 <script>
 import { getMenus } from "./api/frame";
 import _import from "./scripts/_import";
+import _import_map from "./scripts/_import_map";
 import { handleMenus } from "./scripts/utils";
 
 export default {
@@ -17,10 +18,14 @@ export default {
       let menus = res.data;
       this.$store.commit("SET_MENUS", menus);
 
+      // 获取缓存map
+      const modulesMap = await _import_map();
+
       // 获取架构
       let frame = await _import(
         "frames",
-        localStorage.getItem("frame") || PUZZLE_CONFIG.frame
+        localStorage.getItem("frame") || PUZZLE_CONFIG.frame,
+        modulesMap
       );
       this.$router.addRoutes(frame.routerStatic);
       // 嵌套路由 / 默认两级路由
@@ -32,7 +37,7 @@ export default {
       let pages = childRouter[0].children;
       // 获取模块 / 异步获取
       for (let puzzle of menus)
-        _import("puzzles", puzzle.id)
+        _import("puzzles", puzzle.id, modulesMap)
           .then(p => {
             // 需要生成路由的菜单
             let menusRouter = [];
