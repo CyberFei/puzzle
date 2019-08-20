@@ -1,53 +1,55 @@
-# 基于 Webpack4 的可插拔式微前端架构 - Puzzle
+# A pluggable micro-frontend structure based on Vue and Webpack4 - Puzzle
 
-演示环境：[PuzzleDemo](https://shuva.cn/demo/puzzle/#/home)
+Demo : [PuzzleDemo](https://shuva.cn/demo/puzzle/#/home)
+
+中文介绍 : 
 
 ![Puzzle Logo](https://raw.githubusercontent.com/CyberFei/pic/master/logo_400x400.png)
 
 
-## 什么是 Puzzle
+## What is Puzzle
 
-Puzzle 是基于 Vue 和 Webpack4 实现的一种项目结构；业务模块可以像拼图一样与架构模块组合，形成不同的系统，而这一切都是可以在**生产环境热插拔**的；这意味着你可以随时向你的系统添加新的功能模块，甚至改版整个系统，而不需要替换掉整个项目。
+Puzzle is a project structure based on Vue and Webpack4. Business modules can be combined with structure modules like puzzles, and become a different system. All of this is hot pluggable in the production environment. This means you can add new functional modules to your system at any time，even revising the entire system without having to replace the entire project。
 
-此外当多个项目使用此架构开发，即使模块是由不同的项目打包出来的，也可以在生产环境进行快速组合，模块可以非常简单的进行复用。
+In addition, when multiple projects are developed using this structure, even if the modules are packaged by different projects, they can be quickly combined in a production environment. Modules can be reused very simply.
 
 
 
-## 特点
+## Features
 
-- 核心：支持生产环境模块热插拔
+- Core: Support production environment module hot swap
 
-- 支持业务模块的灵活组合
+- Support flexible combination of business modules
 
-- 基座作为基座模块，也支持多个并存（这意味着你可以很轻松的进行灰度测试）
+- The frame of the system as a frame module and also supports multiple coexistences (which means you can easily perform grayscale tests)
 
   
 
-## 如何做到的
+## How to do it
 
-1. 将基座/业务模块以`umd`模块的方式用 `webpack` 打包出来
-2. 通过 [LoadJS](https://github.com/muicss/loadjs) 对这些模块进行挂载，会在 `window` 对象上附加该模块对象
-3. 通过动态路由的方式将该对象加载到架构中
+1. Package the frame/business module as `umd` module with `webpack`
+2. Mounting these modules via [LoadJS](https://github.com/muicss/loadjs) will append the module object to the `window` object.
+3. Load the object into the schema by dynamic routing
 
 
 
-## 运行项目
+## Run this project
 
-### 开发环境
+### Development environment
 
-安装依赖
+Installation dependence
 
 ```bash
 npm install
 ```
 
-构建第三方依赖
+Building third-party dependencies
 
 ```bash
 npm run dll
 ```
 
-运行
+Run
 
 ```bash
 npm start
@@ -55,20 +57,20 @@ npm start
 
 
 
-### 生产环境
-安装依赖
+### Production Environment
+Installation dependence
 
 ```bash
 npm install
 ```
 
-构建第三方依赖
+Building third-party dependencies
 
 ```bash
 npm run dll
 ```
 
-构建，在这步你可以选择需要打包的基座模块和业务模块方便进行灵活组合
+Build, in this step you can choose the frame module and business module that need to be packaged for flexible combination
 
 ```bash
 npm run build
@@ -76,9 +78,9 @@ npm run build
 
 
 
-### 热插拔相关
+### Hot swap related
 
-前端项目根据后端菜单请求进行模块加载，如本项目中后端请求返回格式为（数据来自阿里云）：
+The front-end project loads the module according to the back-end menu request. For example, the back-end request return format in this project is (data from Alibaba Cloud):
 
 ```javascript
 [
@@ -113,106 +115,101 @@ npm run build
 ]
 ```
 
-规定以第一级目录为模块目录（这里看自己的需求可以对项目进行修改）
+Let us stipulate that the first level directory is the module directory (this can be modified by looking at your own needs here).
 
-固模块 ID 为 elastic、database 等，系统会在生产环境对所有子系统的入口文件进行请求，尝试加载模块，并生成路由；
+So the module ID is elastic, database, etc. The system will request the entry files of all subsystems(modules) in the production environment, try to load the module, and generate routes.
 
-所以通过不同用户的不同**业务模块**返回结果，可以进行不同模块的加载，从而进行权限控制；
+Therefore, by returning the results of different user service modules of different users, it is possible to load different modules, thereby performing authority control.
 
-同理通过不同用户的不同**基座模块**返回结果，可以进行不同基座的加载，从而进行灰度测试等操作（目前系统所用基座是写在public/config.js中，固此条仅作参考，项目本身可以自由发挥）；
+Similarly, through different user's different **frame module** return results, you can load different frame to perform grayscale testing and other operations (currently the base used in the system is written in public/config.js, The article is for reference only, the project itself can be freely used).
 
 
 
-#### 单独打包架构
+#### Individually packaged schema
 
 ```
 npm run core
 ```
 
-#### 单独打包基座模块
+#### Individually packaged frame module
 
 ```bash
 npm run frame --name="xxx"
 ```
 
-#### 单独打包业务模块
+#### Individually packaged business module
 
 ```bash
 npm run puzzle --name="xxx"
 ```
 
-通过上述操作打包出的模块，可以直接新增到生产环境或者替换生产环境对应应模块
+The module packaged by the above operation can be directly added to the production environment or replace the corresponding module of the production environment.
 
 
 
 
-## 代码结构
+## Code structure
 
-### 开发环境结构
+### Development environment structure
 
 ![dev](https://github.com/CyberFei/pic/raw/master/puzzle/dev.png)
 
 #### config
 
-此文件夹内包含webpack所有打包配置文件
+This folder contains all packaged configuration files for webpack
 
 #### public
 
-config.js：项目配置，用于生产环境配置
+config.js：Project configuration for production environment configuration
 
-index.html：HTML 模版
+index.html：HTML template
 
 #### src -> core
 
-架构代码
+Schema code
 
 #### src -> frames
 
-基座模块代码，多个基座模块并列放置
+Base module code, multiple base modules placed side by side
 
 #### src -> puzzles
 
-业务模块代码，多个业务模块并列放置
+Business module code, multiple business modules placed side by side
 
 #### static
 
-主要用于放置静态资源，将会直接复制到生产环境static文件夹
+Mainly used to place static resources, will be directly copied to the production environment static folder
 
 #### static -> dll
 
-由`npm run dll`生成的第三方库和公共代码等
+Third-party libraries and public code generated by `npm run dll`
 
 
 
-### 生产环境结构
+### Production environment structure
 
-生产环境代码按照一定结构放置，可以自由升级替换对应模块
+The production environment code is placed according to a certain structure, and the corresponding module can be freely upgraded.
 
 ![prod](https://github.com/CyberFei/pic/raw/master/puzzle/prod.png)
 
 #### core
 
-由 `npm run core` 生成的架构代码
+Schema code generated by `npm run core`
 
 #### frames
 
-由 `npm run frame` 生成的基座模块代码
+Base module code generated by `npm run frame`
 
 #### puzzles
 
-由 `npm run puzzle` 生成的业务模块代码
+Business module code generated by `npm run puzzle`
 
 #### static
 
-静态资源，包含打包生成的第三方库和公共代码等
+Static resources, including package generated third-party libraries and public code, etc.
 
 
 
 ### PS
 
-此架构仅作为日常工作的一个总结，具体业务场景，可以进行修改，基座模块等可以进行自由发挥；业务模块返回的信息也可以按照需求增加；只要各个模块遵循一定标准，并在core中进行统一处理，均可以达到可插拔的效果。
-
-
-
-具体可以看项目代码
-
+This structure is only a summary of daily work, specific business scenarios can be modified, the base module can be freely played; the information returned by the business module can also be increased according to requirements; as long as each module follows certain standards and is in the core Uniform processing can achieve pluggable effects.
