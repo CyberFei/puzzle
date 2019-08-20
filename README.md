@@ -2,7 +2,7 @@
 
 Demo : [PuzzleDemo](https://shuva.cn/demo/puzzle/#/home)
 
-中文介绍 : 
+中文介绍 : [点我去看中文](https://github.com/CyberFei/puzzle/blob/master/README_CN.md)
 
 ![Puzzle Logo](https://raw.githubusercontent.com/CyberFei/pic/master/logo_400x400.png)
 
