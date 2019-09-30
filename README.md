@@ -1,6 +1,6 @@
 # A pluggable micro-frontend structure based on Vue and Webpack4 - Puzzle
 
-Demo : [PuzzleDemo](https://shuva.cn/demo/puzzle/#/home)
+Demo : [PuzzleDemo](http://www.shuva.cn/demo/puzzle/#/home)
 
 中文介绍 : [点我去看中文](https://github.com/CyberFei/puzzle/blob/master/README_CN.md)
 
