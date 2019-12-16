@@ -1,9 +1,9 @@
 var loadjs = require("loadjs");
 
-export default (type, name, modulesMap) =>
+export default (type, name, host = `./${type}/`, modulesMap) =>
   new Promise((resolve, reject) => {
     loadjs(
-      `./${type}/${name}/${name}${
+      `${host}${name}/${name}${
         modulesMap[name] ? "." + modulesMap[name] : ""
       }.js`,
       {

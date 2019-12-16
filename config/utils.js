@@ -70,15 +70,13 @@ exports.generateModulesMap = function() {
 
   let modulesMapString = "";
   for (let key in modulesMap)
-    modulesMapString += `${key}:"${modulesMap[key]}",`;
+    modulesMapString += `
+  ${key}: "${modulesMap[key]}",`;
 
   fs.writeFile(
     "./dist/map.js",
-    `
-    var modulesMap={
-      ${modulesMapString}
-    }
-  `,
+`var modulesMap = {${modulesMapString}
+}`,
     function() {}
   );
 };

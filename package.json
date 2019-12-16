@@ -1,7 +1,7 @@
 {
   "name": "puzzle_demo",
-  "version": "0.1.0",
-  "description": "A vue project",
+  "version": "0.1.3",
+  "description": "A pluggable micro-frontend structure based on Vue and Webpack4. 基于 Vue 和 Webpack4 的可热插拔式微前端架构",
   "author": "GengFei <im.gf@live.com>",
   "scripts": {
     "start": "webpack-dev-server --config config/webpack.dev.js",

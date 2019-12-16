@@ -34,7 +34,8 @@ export default [
       }
     ],
     icon: "puzzle",
-    puzzle: "test"
+    puzzle: "test",
+    // host: "http://www.shuva.cn/demo/puzzle-parts/"
   },
   {
     id: "elastic",

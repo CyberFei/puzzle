@@ -5,7 +5,7 @@
     <i class="btn iconfont icon-hexagon"></i>
     <div class="btn user-op">
       <i class="iconfont icon-user"></i>
-      <span>Cyber</span>
+      <span>{{ username }}</span>
       <i class="iconfont icon-chevron-down"></i>
       <ul>
         <li><i class="iconfont icon-alert-circle"></i>个人信息</li>
@@ -29,7 +29,7 @@ export default {
   },
   data() {
     return {
-      username: localStorage.getItem("userId")
+      username: this.$store.getters.user.name
     };
   },
   methods: {
