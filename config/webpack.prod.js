@@ -1,5 +1,5 @@
 const inquirer = require("inquirer");
-const { getAllDirs, generateModulesMap } = require("./utils");
+const { getAllDirs } = require("./utils");
 const webpackPromise = require("./utils").webpackPromise;
 
 const _core = require("./webpack.build.core");
@@ -55,8 +55,5 @@ const promptList = [
   for (let item of answers.puzzles)
     await webpackPromise(_common("puzzles", item));
 })().then(() => {
-  // 处理缓存问题
-  generateModulesMap();
-
   console.log("\n--------------- ALL DONE ---------------\n");
 });

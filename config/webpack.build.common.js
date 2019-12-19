@@ -15,8 +15,8 @@ module.exports = function(type, puzzle) {
     entry,
     output: {
       path: resolve(`dist/${type}/${puzzle}`),
-      publicPath: `./${type}/${puzzle}/`,
-      filename: "[name].[contenthash].js",
+      filename: "[name].js",
+      chunkFilename: "[name].[contenthash].js",
       library: `${type}_${puzzle}`,
       libraryTarget: "umd"
     },

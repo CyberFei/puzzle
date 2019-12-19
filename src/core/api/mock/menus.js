@@ -35,7 +35,8 @@ export default [
     ],
     icon: "puzzle",
     puzzle: "test",
-    // host: "http://www.shuva.cn/demo/puzzle-parts/"
+    version: "0.1.0",
+    host: "http://www.shuva.cn/demo/puzzle-parts"
   },
   {
     id: "elastic",
@@ -135,7 +136,8 @@ export default [
       }
     ],
     icon: "cpu",
-    puzzle: "elastic"
+    puzzle: "elastic",
+    version: "0.1.0"
   },
   {
     id: "database",
@@ -263,7 +265,8 @@ export default [
       }
     ],
     icon: "database",
-    puzzle: "database"
+    puzzle: "database",
+    version: "0.1.0"
   },
   {
     id: "cdn",
@@ -384,7 +387,8 @@ export default [
       }
     ],
     icon: "download-cloud",
-    puzzle: "cdn"
+    puzzle: "cdn",
+    version: "0.1.0"
   },
   {
     id: "network",
@@ -470,7 +474,8 @@ export default [
       }
     ],
     icon: "globe",
-    puzzle: "network"
+    puzzle: "network",
+    version: "0.1.0"
   },
   {
     id: "analysis",
@@ -514,7 +519,8 @@ export default [
       }
     ],
     icon: "pie-chart",
-    puzzle: "analysis"
+    puzzle: "analysis",
+    version: "0.1.0"
   },
   {
     id: "yuntongxin",
@@ -572,7 +578,8 @@ export default [
       }
     ],
     icon: "mail",
-    puzzle: "yuntongxin"
+    puzzle: "yuntongxin",
+    version: "0.1.0"
   },
   {
     id: "jkgl",
@@ -616,7 +623,8 @@ export default [
       }
     ],
     icon: "aperture",
-    puzzle: "jkgl"
+    puzzle: "jkgl",
+    version: "0.1.0"
   },
   {
     id: "apps",
@@ -779,7 +787,8 @@ export default [
       }
     ],
     icon: "grid",
-    puzzle: "apps"
+    puzzle: "apps",
+    version: "0.1.0"
   },
   {
     id: "hlwzjj",
@@ -837,7 +846,8 @@ export default [
       }
     ],
     icon: "layers",
-    puzzle: "hlwzjj"
+    puzzle: "hlwzjj",
+    version: "0.1.0"
   },
   {
     id: "mq",
@@ -881,7 +891,8 @@ export default [
       }
     ],
     icon: "message-square",
-    puzzle: "mq"
+    puzzle: "mq",
+    version: "0.1.0"
   },
   {
     id: "yidongyun",
@@ -932,7 +943,8 @@ export default [
       }
     ],
     icon: "smartphone",
-    puzzle: "yidongyun"
+    puzzle: "yidongyun",
+    version: "0.1.0"
   },
   {
     id: "dtplus",
@@ -1081,7 +1093,8 @@ export default [
       }
     ],
     icon: "codesandbox",
-    puzzle: "dtplus"
+    puzzle: "dtplus",
+    version: "0.1.0"
   },
   {
     id: "yundun",
@@ -1237,7 +1250,8 @@ export default [
       }
     ],
     icon: "shield",
-    puzzle: "yundun"
+    puzzle: "yundun",
+    version: "0.1.0"
   },
   {
     id: "netcn",
@@ -1295,14 +1309,13 @@ export default [
       }
     ],
     icon: "server",
-    puzzle: "netcn"
+    puzzle: "netcn",
+    version: "0.1.0"
   },
   {
     id: "others",
     name: "其他服务",
     leaf: false,
-    icon: "box",
-    puzzle: "others",
     children: [
       {
         id: "video",
@@ -1387,6 +1400,9 @@ export default [
         icon: "help-circle",
         puzzle: "others"
       }
-    ]
+    ],
+    icon: "box",
+    puzzle: "others",
+    version: "0.1.0"
   }
 ];
