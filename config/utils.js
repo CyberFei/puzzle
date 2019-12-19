@@ -51,36 +51,6 @@ exports.webpackPromise = config =>
     });
   });
 
-// 生成模块 map
-exports.generateModulesMap = function() {
-  let modulesMap = {};
-  function getModules(type) {
-    const modules = getAllDirs(`./dist/${type}`);
-    for (let item of modules) {
-      let files = getAllFiles(`./dist/${type}/${item}`);
-      for (let file of files) {
-        if (file.indexOf(item) > -1) {
-          modulesMap[item] = file.split(".")[1];
-        }
-      }
-    }
-  }
-  getModules("frames");
-  getModules("puzzles");
-
-  let modulesMapString = "";
-  for (let key in modulesMap)
-    modulesMapString += `
-  ${key}: "${modulesMap[key]}",`;
-
-  fs.writeFile(
-    "./dist/map.js",
-`var modulesMap = {${modulesMapString}
-}`,
-    function() {}
-  );
-};
-
 // 获取 dll
 exports.getDlls = function() {
   let dlls = ["core", "puzzle"];

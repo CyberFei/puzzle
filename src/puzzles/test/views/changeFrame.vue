@@ -9,12 +9,28 @@ export default {
   name: "changeFrame",
   methods: {
     changeFrame() {
-      if (
-        !localStorage.getItem("frame") ||
-        localStorage.getItem("frame") == "dashboard"
-      )
-        localStorage.setItem("frame", "demo");
-      else localStorage.setItem("frame", "dashboard");
+      const frames = {
+        dashboard: {
+          name: "dashboard",
+          version: "0.1.0"
+          // host: "http://www.shuva.cn/demo/puzzle-parts/"
+        },
+        demo: {
+          name: "demo",
+          version: "0.1.0"
+          // host: "http://www.shuva.cn/demo/puzzle-parts/"
+        }
+      };
+
+      if (!localStorage.getItem("frame"))
+        localStorage.setItem("frame", JSON.stringify(frames.demo));
+      else {
+        let name = JSON.parse(localStorage.getItem("frame")).name;
+        if (name === "dashboard")
+          localStorage.setItem("frame", JSON.stringify(frames.demo));
+        if (name === "demo")
+          localStorage.setItem("frame", JSON.stringify(frames.dashboard));
+      }
       location.reload();
     }
   }
