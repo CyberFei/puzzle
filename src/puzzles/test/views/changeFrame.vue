@@ -12,13 +12,12 @@ export default {
       const frames = {
         dashboard: {
           name: "dashboard",
-          version: "0.1.0"
-          // host: "http://www.shuva.cn/demo/puzzle-parts/"
+          version: "0.1.0",
+          host: "http://www.shuva.cn/demo/puzzle-parts/"
         },
         demo: {
           name: "demo",
           version: "0.1.0"
-          // host: "http://www.shuva.cn/demo/puzzle-parts/"
         }
       };
 

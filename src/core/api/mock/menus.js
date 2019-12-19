@@ -35,8 +35,8 @@ export default [
     ],
     icon: "puzzle",
     puzzle: "test",
-    version: "0.1.0"
-    // host: "http://www.shuva.cn/demo/puzzle-parts/"
+    version: "0.1.0",
+    host: "http://www.shuva.cn/demo/puzzle-parts"
   },
   {
     id: "elastic",
