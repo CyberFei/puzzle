@@ -21,14 +21,14 @@ export default {
         }
       };
 
-      if (!localStorage.getItem("frame"))
-        localStorage.setItem("frame", JSON.stringify(frames.demo));
+      if (!sessionStorage.getItem("frame"))
+        sessionStorage.setItem("frame", JSON.stringify(frames.demo));
       else {
-        let name = JSON.parse(localStorage.getItem("frame")).name;
+        let name = JSON.parse(sessionStorage.getItem("frame")).name;
         if (name === "dashboard")
-          localStorage.setItem("frame", JSON.stringify(frames.demo));
+          sessionStorage.setItem("frame", JSON.stringify(frames.demo));
         if (name === "demo")
-          localStorage.setItem("frame", JSON.stringify(frames.dashboard));
+          sessionStorage.setItem("frame", JSON.stringify(frames.dashboard));
       }
       location.reload();
     }

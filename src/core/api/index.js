@@ -5,8 +5,8 @@ import user from "./mock/user";
 export const getUser = () =>
   new Promise(resolve =>
     setTimeout(() => {
-      if (localStorage.getItem("frame"))
-        user.frame = JSON.parse(localStorage.getItem("frame"));
+      if (sessionStorage.getItem("frame"))
+        user.frame = JSON.parse(sessionStorage.getItem("frame"));
       resolve(user);
     }, 100)
   );

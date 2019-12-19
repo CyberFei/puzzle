@@ -16,7 +16,7 @@ export default {
   name: "puzzlesDetail",
   data() {
     return {
-      frame: localStorage.getItem("frame") || "dashboard",
+      frame: sessionStorage.getItem("frame") || "dashboard",
       PUZZLE_SUCCESS: window.PUZZLE_SUCCESS
         ? window.PUZZLE_SUCCESS.join(", ")
         : "请在生产环境查看",
