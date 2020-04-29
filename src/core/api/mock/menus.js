@@ -1,7 +1,7 @@
 export default [
   {
     id: "test",
-    name: "PUZZLE 测试页面",
+    name: "PUZZLE 测试模块",
     leaf: false,
     children: [
       {
