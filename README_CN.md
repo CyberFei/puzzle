@@ -2,6 +2,8 @@
 
 演示环境：[PuzzleDemo](http://www.shuva.cn/demo/puzzle/#/home)
 
+[English](https://github.com/CyberFei/puzzle) | 中文
+
 ![Puzzle Logo](https://raw.githubusercontent.com/CyberFei/pic/master/logo_400x400.png)
 
 
@@ -208,6 +210,12 @@ index.html：HTML 模版
 
 
 
-### PS
+## 版本更新
+
+系统会有时会增加一些新功能，详情可以查看[更新日志](https://github.com/CyberFei/puzzle/blob/master/update_log.md)
+
+
+
+## PS
 
 此架构仅作为日常工作的一个总结，具体业务场景，可以进行修改，基座模块等可以进行自由发挥；业务模块返回的信息也可以按照需求增加；只要各个模块遵循一定标准，并在core中进行统一处理，均可以达到可插拔的效果。

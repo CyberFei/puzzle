@@ -2,7 +2,7 @@
 
 Demo : [PuzzleDemo](http://www.shuva.cn/demo/puzzle/#/home)
 
-中文介绍 : [点我去看中文](https://github.com/CyberFei/puzzle/blob/master/README_CN.md)
+English | [中文](https://github.com/CyberFei/puzzle/blob/master/README_CN.md)
 
 ![Puzzle Logo](https://raw.githubusercontent.com/CyberFei/pic/master/logo_400x400.png)
 
@@ -210,6 +210,6 @@ Static resources, including package generated third-party libraries and public c
 
 
 
-### PS
+## PS
 
 This structure is only a summary of daily work, specific business scenarios can be modified, the base module can be freely played; the information returned by the business module can also be increased according to requirements; as long as each module follows certain standards and is in the core Uniform processing can achieve pluggable effects.
