@@ -1,4 +1,4 @@
-const merge = require("webpack-merge");
+const { merge } = require("webpack-merge");
 const common = require("./webpack.common.js");
 // HTML 模板
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -17,13 +17,15 @@ module.exports = merge(common, {
     publicPath: "/"
   },
   devtool: "inline-source-map",
+  // 信息打印
+  stats: "errors-only",
   devServer: {
     // 热重载
     hot: true,
-    // 错误显示在页面中
-    overlay: true,
-    // 信息打印
-    stats: "errors-only",
+    client: {
+      // 错误显示在页面中
+      overlay: true,
+    },
     // 自动打开
     open: false,
     // 代理
@@ -42,20 +44,24 @@ module.exports = merge(common, {
       dlls: getDlls()
     }),
     // 静态资源复制
-    new CopyWebpackPlugin([
-      {
-        from: resolve("static"),
-        to: "static",
-        ignore: [".*"]
-      },
-      {
-        from: resolve("public/config.js"),
-        to: "config.js"
-      },
-      {
-        from: resolve("public/favicon.ico"),
-        to: "favicon.ico"
-      }
-    ])
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: resolve("static"),
+          to: "static",
+          globOptions: {
+            ignore: [".*"]
+          }
+        },
+        {
+          from: resolve("public/config.js"),
+          to: "config.js"
+        },
+        {
+          from: resolve("public/favicon.ico"),
+          to: "favicon.ico"
+        }
+      ]
+    })
   ]
 });

@@ -6,7 +6,7 @@ const resolve = require("./utils").resolve;
 
 module.exports = {
   output: {
-    filename: "[name].bundle.[hash].js",
+    filename: "[name].bundle.[fullhash].js",
     path: resolve("dist/frame")
   },
   resolve: {

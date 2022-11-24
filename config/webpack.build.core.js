@@ -1,7 +1,7 @@
-const merge = require("webpack-merge");
+const { merge } = require("webpack-merge");
 const common = require("./webpack.common.js");
 // 构建前清理
-const CleanWebpackPlugin = require("clean-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 // HTML 模板
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 // 纯静态资源复制
@@ -18,8 +18,12 @@ const webpackConfig = {
   output: {
     path: resolve("dist/core"),
     publicPath: "./core/",
-    filename: "[name].[contenthash].js",
-    libraryTarget: "var"
+    filename: "[name].[fullhash].js",
+    // libraryTarget: "var"
+    library: {
+      type: "var",
+      name: "[name]_[fullhash]"
+    }
   },
   // devtool: "source-map",
   plugins: [
@@ -31,21 +35,25 @@ const webpackConfig = {
       dlls: getDlls()
     }),
     // 纯静态资源复制
-    new CopyWebpackPlugin([
-      {
-        from: resolve("static"),
-        to: resolve("dist/static"),
-        ignore: [".*"]
-      },
-      {
-        from: resolve("public/config.js"),
-        to: resolve("dist/config.js")
-      },
-      {
-        from: resolve("public/favicon.ico"),
-        to: resolve("dist/favicon.ico")
-      }
-    ])
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: resolve("static"),
+          to: resolve("dist/static"),
+          globOptions: {
+            ignore: [".*"]
+          }
+        },
+        {
+          from: resolve("public/config.js"),
+          to: resolve("dist/config.js")
+        },
+        {
+          from: resolve("public/favicon.ico"),
+          to: resolve("dist/favicon.ico")
+        }
+      ]
+    })
   ]
 };
 
