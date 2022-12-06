@@ -1,4 +1,4 @@
-# A pluggable micro-frontend structure based on Vue and Webpack4 - Puzzle
+# A pluggable micro-frontend structure based on Vue and Webpack5 - Puzzle
 
 Demo : [PuzzleDemo](http://www.shuva.cn/demo/puzzle/#/home)
 
@@ -9,7 +9,7 @@ English | [中文](https://github.com/CyberFei/puzzle/blob/master/README_CN.md)
 
 ## What is Puzzle
 
-Puzzle is a project structure based on Vue and Webpack4. Business modules can be combined with structure modules like puzzles, and become a different system. All of this is hot pluggable in the production environment. This means you can add new functional modules to your system at any time，even revising the entire system without having to replace the entire project。
+Puzzle is a project structure based on Vue and Webpack5. Business modules can be combined with structure modules like puzzles, and become a different system. All of this is hot pluggable in the production environment. This means you can add new functional modules to your system at any time，even revising the entire system without having to replace the entire project。
 
 In addition, when multiple projects are developed using this structure, even if the modules are packaged by different projects, they can be quickly combined in a production environment. Modules can be reused very simply.
 
