@@ -18,11 +18,11 @@ const webpackConfig = {
   output: {
     path: resolve("dist/core"),
     publicPath: "./core/",
-    filename: "[name].[fullhash].js",
+    filename: "[name].[chunkhash].js",
     // libraryTarget: "var"
     library: {
       type: "var",
-      name: "[name]_[fullhash]"
+      name: "[name]_puzzle"
     }
   },
   // devtool: "source-map",
