@@ -4,9 +4,25 @@ const VueLoaderPlugin = require("vue-loader/lib/plugin");
 // 路径获取
 const resolve = require("./utils").resolve;
 
+const path = require("path")
+const requireContext = require("./utils").requireContext
+
+const getManifest = dir => {
+  let fileName
+  const manifestList = requireContext(
+    path.resolve(__dirname, `../static/dll/${dir}`),
+    false,
+    /\.manifest\.json$/
+  )
+  Object.keys(manifestList).forEach(name => {
+    fileName = name
+  })
+  return path.resolve(__dirname, `../static/dll/${dir}/${fileName}.json`)
+}
+
 module.exports = {
   output: {
-    filename: "[name].bundle.[fullhash].js",
+    filename: "[name].bundle.[chunkhash].js",
     path: resolve("dist/frame")
   },
   resolve: {
@@ -43,7 +59,7 @@ module.exports = {
         use: [
           {
             loader: "file-loader",
-            options: { outputPath: "img" }
+            options: { outputPath: "img", esModule: false }
           }
         ]
       },
@@ -62,10 +78,10 @@ module.exports = {
     new VueLoaderPlugin(),
     // dll
     new webpack.DllReferencePlugin({
-      manifest: require("../static/dll/core.manifest.json")
+      manifest: require(getManifest("core"))
     }),
     new webpack.DllReferencePlugin({
-      manifest: require("../static/dll/puzzle.manifest.json")
+      manifest: require(getManifest("puzzle"))
     })
   ]
 };

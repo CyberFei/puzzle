@@ -20,15 +20,20 @@ module.exports = {
     puzzle: ["moment"]
   },
   output: {
-    filename: "[name].[fullhash].dll.js",
+    filename: "[name]/[name].[chunkhash].dll.js",
     path: path.join(__dirname, "../static/dll"),
-    library: "[name]_[fullhash]"
+    library: "[name]_puzzleDll",
+    libraryTarget: "umd"
   },
   plugins: [
     new CleanWebpackPlugin(),
     new webpack.DllPlugin({
-      path: path.join(__dirname, "../static/dll", "[name].manifest.json"),
-      name: "[name]_[fullhash]"
+      path: path.join(
+        __dirname,
+        "../static/dll/[name]",
+        "[name].[chunkhash].manifest.json"
+      ),
+      name: "[name]_puzzleDll"
     })
   ]
 };

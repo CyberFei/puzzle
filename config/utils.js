@@ -51,15 +51,52 @@ exports.webpackPromise = config =>
     });
   });
 
+const requireContext = (directory, recursive = true, regExp = /\.js$/) => {
+  const context = {}
+
+  function readDirectory(directory) {
+    const files = fs.readdirSync(directory)
+    files.forEach(file => {
+      const filePath = path.join(directory, file)
+      if (fs.statSync(filePath).isDirectory()) {
+        if (recursive) {
+          readDirectory(filePath)
+        }
+      } else if (regExp.test(file)) {
+        const moduleName = path.parse(file).name
+        context[moduleName] = require(filePath)
+      }
+    })
+  }
+
+  readDirectory(directory)
+  return context
+}
+
+exports.requireContext = requireContext
+
 // 获取 dll
 exports.getDlls = function() {
   let dlls = ["core", "puzzle"];
   let dllNames = [];
   for (let item of dlls) {
-    const dllName = require(`../static/dll/${item}.manifest.json`).name.split(
-      "_"
-    );
-    dllNames.push(`./static/dll/${dllName[0]}.${dllName[1]}.dll.js`);
+    // const dllName = require(`../static/dll/${item}.manifest.json`).name.split(
+    //   "_"
+    // );
+    // dllNames.push(`./static/dll/${dllName[0]}.${dllName[1]}.dll.js`);
+    let fileName
+    const dllFileObj = requireContext(
+      path.resolve(__dirname, `../static/dll/${item}`),
+      true,
+      /\.manifest\.json$/
+    )
+    Object.keys(dllFileObj).forEach(name => {
+      fileName = name
+    })
+    const dllName = fileName.split('.')
+    dllNames.push(
+      `./static/dll/${dllName[0]}/${dllName[0]}.${dllName[1]}.dll.js`
+    )
   }
   return dllNames;
 };
